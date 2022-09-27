@@ -8,4 +8,12 @@ class Admin::UsersController < ApplicationController
 
   def edit
   end
+
+
+  private
+
+
+  def user_params
+    params.require(:user).permit(:name, :email, :is_active, :image)
+  end
 end
