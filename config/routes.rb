@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    get 'post/new'
+    get 'post/index'
+    get 'post/show'
+    get 'post/edit'
+  end
+  namespace :admin do
      resources :users, only:[:index, :show, :edit, :update, :destroy]
   end
 
