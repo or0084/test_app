@@ -1,11 +1,16 @@
 class Admin::PostsController < ApplicationController
   def index
-    @posts = Post.page(params[:])
+    @posts = Post.page(params[:page])
   end
 
   def show
   end
 
-  def edit
+  private
+
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
+
 end
