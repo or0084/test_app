@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :admin do
      resources :users, only:[:index, :show, :edit, :update, :destroy]
+     resources :posts, only:[:index, :show, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
