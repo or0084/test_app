@@ -1,29 +1,60 @@
-<h2>Sign up</h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <% if @user.errors.any? %>
+  <div id="error_explanation" class="col-12 border border-danger bg-light">
+    <h2 class="col-4 mx-auto text-danger"><%= pluralize(@user.errors.count, "エラー") %></h2>
+    <ul class="col-4 mx-auto">
+      <% @user.errors.full_messages.each do |m| %>
+      <li><%= m %></li>
+      <% end %>
+    </ul>
   </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row">
+   <div class="col-10">
+    <br>
+    <div class="row">
+     <h3 class="bg-light ml-5 mb-5 text-center">ユーザー登録</h3>
+    </div>
+    <br>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+    <div class="form-group row">
+     <label for="text" class="col-lg-3 col-sm-6">ユーザー名</label>
+     <div class="col-1"></div>
+     <%= f.text_field :name, :class => "col-sm-3", :placeholder => "令和道子" %>
+    </div>
+    <div class="form-group row">
+     <label for="text" class="col-lg-3 col-sm-6">メールアドレス</label>
+     <div class="col-1"></div>
+     <%= f.email_field :email, :class => "col-sm-3", :placeholder => "sample@example.com" %>
+    </div>
+    <div class="form-group row">
+     <label for="text" class="col-lg-3 col-sm-6">パスワード（６文字以上）</label>
+     <div class="col-1"></div>
+     <%= f.password_field :password, autocomplete: "new-password", :class => "col-sm-3" %>
+    </div>
+    <div class="form-group row">
+     <label for="text" class="col-lg-3 col-sm-6">パスワード（確認用）</label>
+     <div class="col-1"></div>
+     <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "col-sm-3" %>
+    </div>
+    <div class="form-group row">
+     <div class="col-lg-3"></div>
+     <div class="col-1"></div>
+    </div>
+     <%= f.submit "登録", :class => "btn btn-success col-lg-2 mb-5 mt-3" %>
+    <% end %>
+    <div class="form-group row">
+     <%= f.label :password_confirmation %><br />
+     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+    <div class="row">
+     <h3 class="bg-light ml-5 mb-3">既に登録済みの方</h3>
+    </div>
+    <div class="row ml-5 mb-4">
+     <%= link_to user_session_path do %>こちら<% end %>からログインしてください。
+    </div>
+   </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
