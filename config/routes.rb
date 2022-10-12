@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root :to => "public/homes#top"
+
   namespace :admin do
      resources :users, only:[:index, :show, :edit, :update, :destroy]
      resources :posts, only:[:index, :show, :destroy]
