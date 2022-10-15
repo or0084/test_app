@@ -8,6 +8,16 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:notice] = 'ユーザーの編集に成功しました！'
+      redirect_to users_pash
+    else
+      render 'edit'
+    end
+  end
+
 
   private
 
