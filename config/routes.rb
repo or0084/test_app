@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope module: :public do
-    resources :users, only:[:show, :edit, :upadate]
+    resources :users, only:[:show, :edit, :update]
   end
 
   root :to => "public/homes#top"
