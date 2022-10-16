@@ -12,7 +12,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = 'ユーザーの編集に成功しました！'
-      redirect_to users_pash
+      redirect_to user_path(@user.id)
     else
       render 'edit'
     end
