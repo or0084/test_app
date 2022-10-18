@@ -18,6 +18,16 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+  end
+
+  def withdraw
+    @user = User.find(current_user.id)
+    @user.update(is_active: true)
+    reset_session
+    redirect_to root_path
+  end
+
 
   private
 
