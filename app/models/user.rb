@@ -6,5 +6,9 @@ class User < ApplicationRecord
 
 
   has_many :posts, dependent: :destroy
+  
+  def active_for_authentication?
+    super && (self.is_active == false)
+  end
 
 end

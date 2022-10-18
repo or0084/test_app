@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only:[:show, :edit, :update]
+    get '/users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/withdraw/:id' => 'users#withdraw', as: 'withdraw'
   end
 
   root :to => "public/homes#top"
